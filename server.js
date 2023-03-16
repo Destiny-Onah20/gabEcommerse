@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose")
+const dotenv = require("dotenv");
+dotenv.config( {path:'./config/config.env'})
 const app = require("./app")
 
 const port = 1800;
-const db = "mongodb+srv://BraveDev:denkuling20@safehome.vvmble0.mongodb.net/?retryWrites=true&w=majority"
+const db = process.env.DB
 mongoose.connect(db,{
     useNewUrlParser : true,
     useUnifiedTopology: true

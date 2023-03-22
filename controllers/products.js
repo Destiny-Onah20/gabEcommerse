@@ -65,3 +65,19 @@ exports.singleProducts = async(req,res)=>{
         })
     }
 };
+
+
+exports.delProducts = async(req,res)=>{
+    try {
+    const prodId = req.params.prodId;
+    const del = await productModel.findById(prodId);
+    await cloudinary.uploader.destroy(del.cloudId)
+    res.status(200).json({
+        message: "Deleted successsfully..."
+    })
+    } catch (error) {
+        res.status(400).json({
+            message: error.message
+        })
+    }
+};
